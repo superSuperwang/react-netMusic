@@ -1,0 +1,35 @@
+.App {
+  text-align: center;
+
+a{
+   text-decoration:none;
+   color:#606266;
+   font-family:"Arial";
+}
+
+.mine-selected{
+  color:#333333;
+  font-size:16px;
+  font-weight:600;
+  font-family:"Arial";
+}
+.selected{
+  color:#333333;
+  font-size:16px;
+  font-weight:600;
+  font-family:"Arial";
+}
+.nav{
+  display: flex;
+ align-items: center;
+ justify-content: center;
+ background-color: #ffffff;
+ .nav-item{
+  display:block;
+  margin:10px;
+  color:#999999;
+  font-size: 14px;
+}
+}
+
+}
