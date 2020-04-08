@@ -1,7 +1,6 @@
 import React from 'react'
 import './App.scss'
-import './static/swiper.css'
-import { Switch, Route, NavLink } from "react-router-dom"
+import { Switch, Route, NavLink, Redirect } from "react-router-dom"
 import Mine from "./pages/mine/Mine"
 import Discover from "./pages/discover/Discover"
 import Cloud from "./pages/cloud/Cloud"
@@ -35,6 +34,7 @@ function App() {
           <Route path="/discover" component={Discover}></Route>
           <Route path="/cloud" component={Cloud}></Route>
           <Route path="/video" component={Video}></Route>
+          <Redirect from='/mine' to='/discove' />
         </Switch>
       </div>
     </div>
