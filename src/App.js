@@ -5,10 +5,11 @@ import Mine from "./pages/mine/Mine"
 import Discover from "./pages/discover/Discover"
 import Cloud from "./pages/cloud/Cloud"
 import Video from "./pages/video/Video"
-
+import MusicDetail from "./pages/musicDetail/MusicDetail"
 
 function App() {
   return (
+
     <div className="App">
       {/* <NavLink></NavLink>
       <Switch>
@@ -30,14 +31,22 @@ function App() {
       </div>
       <div className="main-container">
         <Switch>
-          <Route path="/mine" component={Mine}></Route>
-          <Route path="/discover" component={Discover}></Route>
-          <Route path="/cloud" component={Cloud}></Route>
-          <Route path="/video" component={Video}></Route>
-          <Redirect from='/mine' to='/discove' />
+          <Route path="/mine" component={Mine} ></Route>
+          <Route path="/discover" component={Discover} exact></Route>
+          <Route path="/cloud" component={Cloud} ></Route>
+          <Route path="/video" component={Video} ></Route>
+          <Route path="/discover/musicDetail" component={MusicDetail} ></Route>
+          <Redirect to='/discover' />
         </Switch>
       </div>
+
+      {/* <div className="full-container">
+        <Switch>
+          <Route path="/discover/musicDetail" component={MusicDetail}></Route>
+        </Switch>
+      </div> */}
     </div>
+
   );
 }
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from "react-router-dom"
 import Swiper from 'swiper';
-import discoverApi from '../../api/discover'
+import discoverApi from '../../api/discoverApi'
 import './discover.scss'
 import ColumnList from '../../components/columnList/ColumnList'
 
@@ -15,6 +15,7 @@ export default class discover extends Component {
     }
   }
 
+  // 获取轮播图
   requestBanner = async () => {
     const { data: { banners } } = await discoverApi.getBanner(1)
     this.setState({
@@ -22,6 +23,7 @@ export default class discover extends Component {
     })
   }
 
+  // 获取推荐歌单
   requestRecMusic = async () => {
     const { data: { result } } = await discoverApi.getRecommendMusic()
     console.log(result)
@@ -31,6 +33,7 @@ export default class discover extends Component {
   }
 
   componentDidMount() {
+    // 轮播图插件
     new Swiper('.swiper-container', {
       autoplay: true,
       pagination: {
