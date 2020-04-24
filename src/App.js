@@ -35,7 +35,7 @@ function App() {
           <Route path="/discover" component={Discover} exact></Route>
           <Route path="/cloud" component={Cloud} ></Route>
           <Route path="/video" component={Video} ></Route>
-          <Route path="/discover/musicDetail" component={MusicDetail} ></Route>
+          <Route path="/discover/musicDetail/:id" component={MusicDetail} ></Route>
           <Redirect to='/discover' />
         </Switch>
       </div>

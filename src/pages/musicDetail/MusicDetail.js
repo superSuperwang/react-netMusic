@@ -1,13 +1,23 @@
 import React, { Component } from 'react'
 import './musicDetail.scss'
-
+import api from '../../api/discoverApi'
 export default class MusicDetail extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      musicList: []
+
     }
   }
+
+  componentDidMount() {
+    this.requestData(this.props.match.params.id)
+  }
+
+  requestData = async (id) => {
+    const result = await api.getMusicDetail({ id })
+    console.log(result)
+  }
+
   render() {
     return (
       <div className="music-detail-container">
