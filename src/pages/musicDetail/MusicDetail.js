@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
 import './musicDetail.scss'
 import api from '../../api/discoverApi'
+import formatPlayCount from '../../utils/formatPlayCount'
+
 export default class MusicDetail extends Component {
   constructor(props) {
     super(props)
     this.state = {
-
+       musicDetail:[],
+       musicBasicData:{playCount:''}
     }
   }
 
@@ -14,11 +17,17 @@ export default class MusicDetail extends Component {
   }
 
   requestData = async (id) => {
-    const result = await api.getMusicDetail({ id })
-    console.log(result)
+    const {data:{playlist}} = await api.getMusicDetail({ id })
+    
+    this.setState({
+      musicDetail:playlist.tracks,
+      musicBasicData:playlist
+    })
+    console.log(this.state.musicBasicData)
   }
 
   render() {
+    const {musicDetail,musicBasicData}=this.state
     return (
       <div className="music-detail-container">
         <div className="bg-image">
@@ -28,10 +37,16 @@ export default class MusicDetail extends Component {
               <span className="back-tip">歌单</span>
             </div>
             <div className="middle-container">
-              <div className="left-img"><img src="" alt="" /></div>
+              <div className="left-img">
+              <div className="min-icon-container" >
+                <div className="min-icon"></div>
+                <span className="span-font">{formatPlayCount(musicBasicData.playCount)}</span>
+              </div>
+                <img src={musicBasicData.coverImgUrl} alt="" />
+                </div>
               <div className="right-word">
                 <p className="right-word-style">
-                  wowowoowowowowwowowowowowowowowow
+                  {musicBasicData.description}
                   </p>
               </div>
             </div>
@@ -63,14 +78,18 @@ export default class MusicDetail extends Component {
               </div>
               <div className="head-right">+ 收藏 (13999)</div>
             </div>
-            <div className="list">
-              <span className="list-num">1</span>
+            <div className="scroll-container" style={{overflowY:'scroll',height:'546px'}}>
+            {musicDetail.map((item,index)=>(
+              <div className="list" key={index}>
+              <span className="list-num">{index+1}</span>
               <div className="list-infor">
-                <p className="list-infor-top">我是一只鱼</p>
-                <p className="list-infor-bottom">超人学长</p>
+                <p className="list-infor-top">{item.name}</p>
+                <p className="list-infor-bottom">{item.ar[0].name}</p>
               </div>
               <span className="list-detail"></span>
             </div>
+            ))}
+           </div> 
           </div>
         </div>
       </div>

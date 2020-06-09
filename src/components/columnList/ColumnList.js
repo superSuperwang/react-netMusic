@@ -30,7 +30,7 @@ export default class ColumnList extends Component {
       <div className="wrapper">
         <div className="content">
           {recommendMusic.map((item, index) => (
-            <div className="wrap-item" key={index} onTouchStart={(e) => this.showMusicDetail(item, e)}>
+            <div className="wrap-item" key={index} onTouchEnd={(e) => this.showMusicDetail(item, e)}>
               <div className="min-icon-container" >
                 <div className="min-icon"></div>
                 <span className="span-font">{formatPlayCount(item.playCount)}</span>
