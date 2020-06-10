@@ -1,8 +1,9 @@
 export default function setMusic(state = [], action) {
   let newState
+  console.log(state)
   switch (action.type) {
     case 'ADD_MUSIC':
-      newState = [...state, ...action.payload]
+      newState = state.push(action.payload)
       break
     case 'DELETE_MUISIC':
       newState = state.splice(action.payload, 1)
