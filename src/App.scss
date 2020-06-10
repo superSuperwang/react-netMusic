@@ -1,40 +1,42 @@
-*{
-  // touch-action: none;
-  margin: 0;
-  padding: 0;
+* {
+	// touch-action: none;
+	margin: 0;
+	padding: 0;
 }
 ul {
-  list-style:none;
+	list-style: none;
 }
 .App {
-  margin: 0 10px;
-a{
-   text-decoration:none;
-   color:#606266;
-}
+	overflow-x: hidden;
+	a {
+		text-decoration: none;
+		color: #606266;
+	}
 
-.mine-selected{
-  color:#333333;
-  font-size:16px;
-  font-weight:600;
-}
-.selected{
-  color:#333333;
-  font-size:16px;
-  font-weight:600;
-}
-.nav{
-  display: flex;
- align-items: center;
- justify-content: center;
- background-color: #ffffff;
- height: 50px;
- .nav-item{
-  display:block;
-  margin:10px;
-  color:#999999;
-  font-size: 14px;
-}
-}
-
+	.mine-selected {
+		color: #333333;
+		font-size: 16px;
+		font-weight: 600;
+	}
+	.selected {
+		color: #333333;
+		font-size: 16px;
+		font-weight: 600;
+	}
+	.nav {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-color: #ffffff;
+		height: 50px;
+		.nav-item {
+			display: block;
+			margin: 10px;
+			color: #999999;
+			font-size: 14px;
+		}
+	}
+	.main-container {
+		margin: 0 10px;
+	}
 }
