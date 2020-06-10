@@ -1,11 +1,13 @@
 import React from 'react'
 import './App.scss'
 import { Switch, Route, NavLink, Redirect } from "react-router-dom"
-import Mine from "./pages/mine/Mine"
-import Discover from "./pages/discover/Discover"
-import Cloud from "./pages/cloud/Cloud"
-import Video from "./pages/video/Video"
-import MusicDetail from "./pages/musicDetail/MusicDetail"
+import Mine from "./pages/Mine/Mine"
+import Discover from "./pages/Discover/Discover"
+import Cloud from "./pages/Cloud/Cloud"
+import Video from "./pages/Video/Video"
+import MusicDetail from "./pages/MusicDetail/MusicDetail"
+import PlayMusic from "./components/PlayMusic/PlayMusic"
+import store from "./store/index"
 
 function App() {
   return (
@@ -39,12 +41,9 @@ function App() {
           <Redirect to='/discover' />
         </Switch>
       </div>
-
-      {/* <div className="full-container">
-        <Switch>
-          <Route path="/discover/musicDetail" component={MusicDetail}></Route>
-        </Switch>
-      </div> */}
+      <div className="footer">
+        <PlayMusic store={store} />
+      </div>
     </div>
 
   );

@@ -5,15 +5,13 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from "react-router-dom"
-import {createStore} from 'redux'
-import reducer from './store/reducer'
+import store from './store/index'
 
-const store=createStore(reducer)
-const render=()=>{
+const render = () => {
   ReactDOM.render(<BrowserRouter>
-  <App store={store} />
-</BrowserRouter>,
-  document.getElementById('root'));
+    <App />
+  </BrowserRouter>,
+    document.getElementById('root'));
 }
 
 store.subscribe(render)
