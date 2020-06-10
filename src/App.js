@@ -29,9 +29,7 @@ function App() {
           <Redirect to='/discover' />
         </Switch>
       </div>
-      <div className="footer">
-        <PlayMusic store={store} />
-      </div>
+      <PlayMusic store={store} />
     </div>
 
   );
