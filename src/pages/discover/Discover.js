@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import Swiper from 'swiper';
 import discoverApi from '../../api/discoverApi'
 import './discover.scss'
-import ColumnList from '../../components/columnList/ColumnList'
+import ColumnList from '../../components/ColumnList/ColumnList'
 
 
 export default class discover extends Component {
