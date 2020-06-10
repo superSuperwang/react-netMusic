@@ -7,8 +7,8 @@ export default class MusicDetail extends Component {
   constructor(props) {
     super(props)
     this.state = {
-       musicDetail:[],
-       musicBasicData:{playCount:''}
+      musicDetail: [],
+      musicBasicData: { playCount: '' }
     }
   }
 
@@ -17,17 +17,17 @@ export default class MusicDetail extends Component {
   }
 
   requestData = async (id) => {
-    const {data:{playlist}} = await api.getMusicDetail({ id })
-    
+    const { data: { playlist } } = await api.getMusicDetail({ id })
+
     this.setState({
-      musicDetail:playlist.tracks,
-      musicBasicData:playlist
+      musicDetail: playlist.tracks,
+      musicBasicData: playlist
     })
     console.log(this.state.musicBasicData)
   }
 
   render() {
-    const {musicDetail,musicBasicData}=this.state
+    const { musicDetail, musicBasicData } = this.state
     return (
       <div className="music-detail-container">
         <div className="bg-image">
@@ -38,16 +38,16 @@ export default class MusicDetail extends Component {
             </div>
             <div className="middle-container">
               <div className="left-img">
-              <div className="min-icon-container" >
-                <div className="min-icon"></div>
-                <span className="span-font">{formatPlayCount(musicBasicData.playCount)}</span>
-              </div>
-                <img src={musicBasicData.coverImgUrl} alt="" />
+                <div className="min-icon-container" >
+                  <div className="min-icon"></div>
+                  <span className="span-font">{formatPlayCount(musicBasicData.playCount)}</span>
                 </div>
+                <img src={musicBasicData.coverImgUrl} alt="" />
+              </div>
               <div className="right-word">
                 <p className="right-word-style">
                   {musicBasicData.description}
-                  </p>
+                </p>
               </div>
             </div>
             <div className="bottom-container">
@@ -78,18 +78,18 @@ export default class MusicDetail extends Component {
               </div>
               <div className="head-right">+ 收藏 (13999)</div>
             </div>
-            <div className="scroll-container" style={{overflowY:'scroll',height:'546px'}}>
-            {musicDetail.map((item,index)=>(
-              <div className="list" key={index}>
-              <span className="list-num">{index+1}</span>
-              <div className="list-infor">
-                <p className="list-infor-top">{item.name}</p>
-                <p className="list-infor-bottom">{item.ar[0].name}</p>
-              </div>
-              <span className="list-detail"></span>
+            <div className="scroll-container" style={{ overflowY: 'scroll' }}>
+              {musicDetail.map((item, index) => (
+                <div className="list" key={index}>
+                  <span className="list-num">{index + 1}</span>
+                  <div className="list-infor">
+                    <p className="list-infor-top">{item.name}</p>
+                    <p className="list-infor-bottom">{item.ar[0].name}</p>
+                  </div>
+                  <span className="list-detail"></span>
+                </div>
+              ))}
             </div>
-            ))}
-           </div> 
           </div>
         </div>
       </div>
