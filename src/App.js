@@ -8,7 +8,7 @@ import Cloud from "./pages/Cloud/Cloud"
 import Video from "./pages/Video/Video"
 import MusicDetail from "./pages/MusicDetail/MusicDetail"
 import PlayMusic from "./components/PlayMusic/PlayMusic"
-import store from "./store/index"
+import store from "@/store"
 
 function App() {
   return (

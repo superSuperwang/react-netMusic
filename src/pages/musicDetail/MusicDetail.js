@@ -3,8 +3,8 @@ import './musicDetail.scss'
 import api from '../../api/discoverApi'
 import formatPlayCount from '../../utils/formatPlayCount'
 import history from '../../utils/history'
-import store from '../../store'
-import action from '../../store/action'
+import store from '@/store'
+import action from '@/store/action'
 
 export default class MusicDetail extends Component {
   constructor(props) {
@@ -35,10 +35,10 @@ export default class MusicDetail extends Component {
 
   // 播放音乐
   playMusic = (item) => {
-    // console.log(item)
-    // // 跳转到播放页面
-    // store.dispatch(action.addMusic(item))
-    // console.log(store.getState())
+    console.log(item)
+    // 跳转到播放页面
+    store.dispatch(action.addMusic(item))
+    console.log(store.getState())
   }
 
   render() {
