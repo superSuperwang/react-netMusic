@@ -1,6 +1,7 @@
 import React from 'react'
 import './App.scss'
-import { Switch, Route, NavLink, Redirect } from "react-router-dom"
+import { Switch, Route, Redirect } from "react-router-dom"
+import Header from "./components/Header/Header"
 import Mine from "./pages/Mine/Mine"
 import Discover from "./pages/Discover/Discover"
 import Cloud from "./pages/Cloud/Cloud"
@@ -17,20 +18,7 @@ function App() {
       <Switch>
         <Route></Route>
       </Switch> */}
-      <div className="nav">
-        <span className="nav-item">
-          <NavLink to="/mine" activeClassName="mine-selected">我的</NavLink>
-        </span>
-        <span className="nav-item">
-          <NavLink to="/discover" activeClassName="selected">发现</NavLink>
-        </span>
-        <span className="nav-item">
-          <NavLink to="/cloud" activeClassName="selected">云村</NavLink>
-        </span>
-        <span className="nav-item">
-          <NavLink to="/video" activeClassName="selected">视频</NavLink>
-        </span>
-      </div>
+      <Header />
       <div className="main-container">
         <Switch>
           <Route path="/mine" component={Mine} ></Route>
