@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import './musicDetail.scss'
 import api from '../../api/discoverApi'
 import formatPlayCount from '../../utils/formatPlayCount'
+import history from '../../utils/history'
+import store from '../../store'
+import action from '../../store/action'
 
 export default class MusicDetail extends Component {
   constructor(props) {
@@ -23,7 +26,19 @@ export default class MusicDetail extends Component {
       musicDetail: playlist.tracks,
       musicBasicData: playlist
     })
-    console.log(this.state.musicBasicData)
+  }
+
+  // 回退
+  goBack = () => {
+    history.goBack()
+  }
+
+  // 播放音乐
+  playMusic = (item) => {
+    // console.log(item)
+    // // 跳转到播放页面
+    // store.dispatch(action.addMusic(item))
+    // console.log(store.getState())
   }
 
   render() {
@@ -33,7 +48,7 @@ export default class MusicDetail extends Component {
         <div className="bg-image">
           <div className="top-container">
             <div className="back">
-              <div className="back-btn"></div>
+              <div className="back-btn" onTouchEnd={this.goBack}></div>
               <span className="back-tip">歌单</span>
             </div>
             <div className="middle-container">
@@ -80,7 +95,7 @@ export default class MusicDetail extends Component {
             </div>
             <div className="scroll-container" style={{ overflowY: 'scroll' }}>
               {musicDetail.map((item, index) => (
-                <div className="list" key={index}>
+                <div className="list" key={index} onTouchEnd={(e) => { this.playMusic(item, e) }}>
                   <span className="list-num">{index + 1}</span>
                   <div className="list-infor">
                     <p className="list-infor-top">{item.name}</p>
