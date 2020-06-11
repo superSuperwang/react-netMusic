@@ -7,7 +7,9 @@ import Discover from "./pages/Discover/Discover"
 import Cloud from "./pages/Cloud/Cloud"
 import Video from "./pages/Video/Video"
 import MusicDetail from "./pages/MusicDetail/MusicDetail"
+import ListenMusic from "./pages/ListenMusic/ListenMusic"
 import PlayMusic from "./components/PlayMusic/PlayMusic"
+
 import store from "@/store"
 
 function App() {
@@ -21,11 +23,12 @@ function App() {
       <Header />
       <div className="main-container">
         <Switch>
-          <Route path="/mine" component={Mine} ></Route>
+          <Route path="/mine" component={Mine} exact></Route>
           <Route path="/discover" component={Discover} exact></Route>
-          <Route path="/cloud" component={Cloud} ></Route>
-          <Route path="/video" component={Video} ></Route>
-          <Route path="/discover/musicDetail/:id" component={MusicDetail} ></Route>
+          <Route path="/cloud" component={Cloud} exact ></Route>
+          <Route path="/video" component={Video} exact></Route>
+          <Route path="/discover/musicDetail/:id" component={MusicDetail} exact></Route>
+          <Route path="/discover/musicDetail/listenMusic/:id" component={ListenMusic} exact ></Route>
           <Redirect to='/discover' />
         </Switch>
       </div>
