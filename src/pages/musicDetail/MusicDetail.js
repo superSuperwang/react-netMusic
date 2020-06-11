@@ -11,7 +11,13 @@ export default class MusicDetail extends Component {
     super(props)
     this.state = {
       musicDetail: [],
-      musicBasicData: { playCount: '' }
+      musicBasicData: { playCount: '' },
+      songDetail: {
+        id: '',// 歌曲id
+        url: '',// 歌曲链接
+        lyric: '',//歌词
+        img: ''//封面地址
+      }
     }
   }
 
@@ -20,12 +26,17 @@ export default class MusicDetail extends Component {
   }
 
   requestData = async (id) => {
-    const { data: { playlist } } = await api.getMusicDetail({ id })
+    try {
+      const { data: { playlist } } = await api.getMusicDetail({ id })
 
-    this.setState({
-      musicDetail: playlist.tracks,
-      musicBasicData: playlist
-    })
+      this.setState({
+        musicDetail: playlist.tracks,// 歌曲
+        musicBasicData: playlist// 歌单详情
+      })
+    } catch (err) {
+      console.log(err)
+    }
+
   }
 
   // 回退
@@ -34,11 +45,21 @@ export default class MusicDetail extends Component {
   }
 
   // 播放音乐
-  playMusic = (item) => {
-    console.log(item)
-    // 跳转到播放页面
-    store.dispatch(action.addMusic(item))
-    console.log(store.getState())
+  playMusic = async (id) => {
+    try {
+      const { data: { data } } = await api.getSongUrl({ id })
+      let url = data[0].url
+      const { data: data1 } = await api.getSongDetail({ ids: id })
+      let img = data1.songs[0].al.picUrl
+      const { data: data2 } = await api.getLyric({ id })
+      let lyric = data2.lrc.lyric
+      this.setState({
+        songDetail: Object.assign({}, this.state.songDetail, { url, img, lyric, id })
+      })
+      store.dispatch(action.addMusic(this.state.songDetail))
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   render() {
@@ -89,13 +110,13 @@ export default class MusicDetail extends Component {
               <div className="head-left">
                 <div className="head-left-icon"></div>
                 <span className="head-left-word1">播放全部</span>
-                <span className="head-left-word2">(共160首)</span>
+                <span className="head-left-word2">(共{musicDetail.length}首)</span>
               </div>
-              <div className="head-right">+ 收藏 (13999)</div>
+              <div className="head-right">+ 收藏 ({formatPlayCount(musicBasicData.subscribedCount)})</div>
             </div>
             <div className="scroll-container" style={{ overflowY: 'scroll' }}>
               {musicDetail.map((item, index) => (
-                <div className="list" key={index} onTouchEnd={(e) => { this.playMusic(item, e) }}>
+                <div className="list" key={index} onTouchEnd={(e) => { this.playMusic(item.id, e) }}>
                   <span className="list-num">{index + 1}</span>
                   <div className="list-infor">
                     <p className="list-infor-top">{item.name}</p>

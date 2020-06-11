@@ -1,15 +1,13 @@
 export default function setMusic(state = [], action) {
-  let newState
-  console.log(state)
-  switch (action.type) {
-    case 'ADD_MUSIC':
-      newState = state.push(action.payload)
-      break
-    case 'DELETE_MUISIC':
-      newState = state.splice(action.payload, 1)
-      break
-    default:
-      break
+
+  // reducer 必须为纯函数，不能改变参数
+  // 数组中添加对象时需判断数组中有没有，没有则加
+  let newState = [...state]
+  const index = newState.findIndex(item => item.id === action.payload.id)
+  if (action.type === 'ADD_MUSIC' && index === -1) {
+    newState.unshift(action.payload)
+  } else if (action.type === 'DELETE_MUISIC' && index !== -1) {
+    newState.splice(index, 1)
   }
   return newState
 }
